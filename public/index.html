@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💬 Universal Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Kirish qismi -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-box">
+      <h2>💬 Universal Chat</h2>
+      <br>
+      <div class="avatar-upload" id="avatarUpload" style="cursor:pointer; text-align:center; margin-bottom:15px;">
+        <div class="avatar-preview" id="avatarPreview" style="width:70px; height:70px; border-radius:50%; background:#667eea; color:#fff; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 10px; background-size:cover;">?</div>
+        <small>Rasm yuklash (ixtiyoriy)</small>
+        <input type="file" id="avatarInput" accept="image/*" hidden>
+      </div>
+      <input type="text" id="usernameInput" placeholder="Ismingiz..." maxlength="20">
+      <button id="joinBtn">Kirish</button>
+    </div>
+  </div>
+
+  <!-- Chat qismi -->
+  <div id="chatScreen" class="chat-screen hidden">
+    <header class="chat-header">
+      <div class="header-left">
+        <h2>💬 Onlayn Chat</h2>
+      </div>
+      <div class="header-right">
+        <div class="online-count">
+          <span class="dot"></span>
+          <span id="onlineCount">0</span>
+        </div>
+        <button id="themeToggle" class="icon-btn" style="width:32px; height:32px; border-radius:50%;">🌙</button>
+      </div>
+    </header>
+
+    <div class="chat-main">
+      <aside class="sidebar">
+        <h3>👥 Onlayn</h3>
+        <ul id="userList"></ul>
+      </aside>
+
+      <div class="chat-area">
+        <div class="chat-body" id="chatBody">
+          <ul id="messages"></ul>
+          <div id="typingIndicator" class="typing"></div>
+        </div>
+        
+        <div id="replyBar" class="reply-bar hidden">
+          <div><b id="replyUser"></b>: <span id="replyText"></span></div>
+          <button onclick="document.getElementById('replyBar').classList.add('hidden'); window.replyToMsg = null;" style="border:none;background:none;cursor:pointer;">✕</button>
+        </div>
+
+        <form id="form" class="chat-form">
+          <button type="button" id="emojiBtn" class="icon-btn">😀</button>
+          <button type="button" id="fileBtn" class="icon-btn">📎</button>
+          <input id="input" autocomplete="off" placeholder="Xabar yozing..." />
+          <button type="submit" class="send-btn">➤</button>
+          <input type="file" id="fileInput" hidden accept="image/*,video/*,audio/*">
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Emoji paneli -->
+  <div id="emojiPanel" class="emoji-panel hidden"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
